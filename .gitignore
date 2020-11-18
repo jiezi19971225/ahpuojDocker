@@ -1,0 +1,43 @@
+# Binaries for programs and plugins
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+
+# Test binary, built with `go test -c`
+*.test
+
+# Output of the go coverage tool, specifically when used with LiteIDE
+*.out
+
+# docker
+compose/data/
+compose/web/
+compose/scheduler/
+compose/master_mysql-files/
+compose/slave_mysql-files/
+compose/mysql_master_data/
+compose/mysql_slave_data/
+
+# FE
+/FE/node_modules
+/FE/dist
+/FE/package-lock.json
+
+# backend
+/ahpuoj/ahpuoj
+/ahpuoj/config/config.ini
+ahpuoj/.vscode/launch.json
+
+# scheduler
+/scheduler/config.ini
+/scheduler/log/
+/scheduler/scheduler
+
+# mysql model
+*.bak
+
+# ide
+.idea
+.vscode
