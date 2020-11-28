@@ -37,7 +37,7 @@ services:
     container_name: ahpuojv2_mysql
     restart: always
     ports:
-      - "33060:3306"
+      - "33306:3306"
     volumes:
       - ./mysql_master_data:/var/lib/mysql
       - ../sql/oj.sql:/docker-entrypoint-initdb.d/oj.sql
@@ -56,7 +56,7 @@ services:
     container_name: ahpuojv2_mysql_slave
     restart: always
     ports:
-      - "33061:3306"
+      - "33307:3306"
     volumes:
       - ./mysql_slave_data:/var/lib/mysql
       - ../sql/oj.sql:/docker-entrypoint-initdb.d/oj.sql
