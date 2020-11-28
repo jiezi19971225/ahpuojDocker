@@ -1,13 +1,31 @@
 version: "3.2"
 services:
+  fe:
+    image: ccr.ccs.tencentyun.com/jiezi19971225/ahpuoj-fe:latest
+    container_name: ahpuojv2_fe
+    restart: always
+    ports:
+      - 80:80
+    volumes:
+      - oj-upload-volume:/usr/share/nginx/ahpuoj/upload:ro
+  backend:
+    image: ccr.ccs.tencentyun.com/jiezi19971225/ahpuoj-backend:latest
+    container_name: ahpuojv2_backend
+    restart: always
+    ports:
+      - 8080:8080
+    volumes:
+      - ./backend_config.ini:/home/backend/config/config.ini:ro
+      - oj-problemdata-volume:/var/oj/problemdata:cached
+      - oj-upload-volume:/var/oj/upload:cached
   judger:
     image: ccr.ccs.tencentyun.com/jiezi19971225/ahpuoj-judger:latest
     container_name: ahpuojv2_judger
     restart: always
     tty: true
     volumes:
-      - ${OJ_DATA_PATH_HOST}:${OJ_DATA_PATH_CONTAINER}${OJ_CODE_CONTAINER_FLAG}
-      - ${OJ_SCHEDULER_CONFIG_FILE_HOST}:${OJ_SCHEDULER_CONFIG_FILE_CONTAINER}${OJ_CODE_CONTAINER_FLAG}
+      - ./scheduler_config.ini:/home/judge/scheduler/config.ini:ro
+      - oj-problemdata-volume:/home/judge/hustoj_core/data:ro
     depends_on:
       - db
       - db-slave
@@ -77,3 +95,6 @@ services:
       options:
         max-size: "200k"
         max-file: "10"
+volumes:
+  oj-problemdata-volume:
+  oj-upload-volume:
