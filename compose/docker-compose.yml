@@ -41,6 +41,7 @@ services:
     volumes:
       - ./mysql_master_data:/var/lib/mysql
       - ../sql/oj.sql:/docker-entrypoint-initdb.d/oj.sql
+      - ../sql/ojdata.sql:/docker-entrypoint-initdb.d/ojdata.sql
       - ../sql/casbin.sql:/docker-entrypoint-initdb.d/casbin.sql
       - ./init_master.sh:/docker-entrypoint-initdb.d/init_master.sh
       - "./master_my.cnf:/etc/mysql/my.cnf"
@@ -60,6 +61,7 @@ services:
     volumes:
       - ./mysql_slave_data:/var/lib/mysql
       - ../sql/oj.sql:/docker-entrypoint-initdb.d/oj.sql
+      - ../sql/ojdata.sql:/docker-entrypoint-initdb.d/ojdata.sql
       - ../sql/casbin.sql:/docker-entrypoint-initdb.d/casbin.sql
       - ./init_slave.sh:/docker-entrypoint-initdb.d/init_slave.sh
       - "./slave_my.cnf:/etc/mysql/my.cnf"
