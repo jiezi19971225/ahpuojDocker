@@ -18,6 +18,11 @@ services:
       - ./backend_config.ini:/home/backend/config/config.ini:ro
       - oj-problemdata-volume:/var/oj/problemdata:cached
       - oj-upload-volume:/var/oj/upload:cached
+    depends_on:
+      - db
+      - db-slave
+      - redis
+      - rabbitmq
   judger:
     image: ccr.ccs.tencentyun.com/jiezi19971225/ahpuoj-judger:latest
     container_name: ahpuojv2_judger
