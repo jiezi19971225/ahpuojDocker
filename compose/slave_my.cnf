@@ -19,7 +19,10 @@
 # For explanations see
 # http://dev.mysql.com/doc/mysql/en/server-system-variables.html
 
+## 可写的配置文件在mysqld启动时会被忽略。如果你在windows下更改了其中的配置，更改后请务必设置文件为只读的
+
 [mysqld]
+default-time-zone='+8:00'
 ## 设置server_id，一般设置为IP，注意要唯一
 server_id=2
 ## 需要主从复制的数据库
